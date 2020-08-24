@@ -1,0 +1,4 @@
+./build
+./qa-common/build
+./qa-transport-common/build
+./qa-transport-rest/build
