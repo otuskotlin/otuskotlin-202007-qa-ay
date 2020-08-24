@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.github.yanadroidua.models.QuestionModelTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-08-18T19:25:49" hostname="andypc" time="0.009">
+  <properties/>
+  <testcase name="testIfCommentsHasNoSolvedAndQuestionInNotSolved" classname="com.github.yanadroidua.models.QuestionModelTest" time="0.008"/>
+  <testcase name="testIfCommentsHasSolvedAndQuestionIsSolved" classname="com.github.yanadroidua.models.QuestionModelTest" time="0.0"/>
+  <testcase name="testQuestionCreation" classname="com.github.yanadroidua.models.QuestionModelTest" time="0.0"/>
+  <testcase name="testIfCommentsEmptyAndQuestionIsNotSolved" classname="com.github.yanadroidua.models.QuestionModelTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
