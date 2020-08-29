@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 data class AnswerUpdateDTO(
         val uuid: String,
         val comment: String? = null,
-        val userUuid: String? = null,
         val solveIssue: Boolean? = null,
         val rate: Int? = null
 )
