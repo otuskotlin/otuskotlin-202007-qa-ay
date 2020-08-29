@@ -3,18 +3,22 @@ package com.github.yanadroidua.transport.rest.server.routing
 import com.github.yanadroidua.transport.rest.server.Constants
 import com.github.yanadroidua.transport.rest.server.handlers.UserHandler
 import io.ktor.routing.*
-import kotlinx.serialization.json.Json
+import org.kodein.di.bind
+import org.kodein.di.instance
+import org.kodein.di.ktor.di
+import org.kodein.di.ktor.subDI
+import org.kodein.di.singleton
 
-private var userHandler: UserHandler? = null
-
-private fun userHandler(json: Json): UserHandler {
-    if (userHandler == null) {
-        userHandler = UserHandler(json)
+internal fun Route.userRouting() {
+    subDI {
+        bind<UserHandler>() with singleton { UserHandler(instance()) }
     }
-    return userHandler!!
-}
-
-internal fun Route.user(json: Json) {
-    get (path = Constants.Routing.RANDOM_USER) { userHandler(json).getRandomUser(this) }
-    post (path = Constants.Routing.CREATE_USER) { userHandler(json).handlePostUser(this) }
+    get (path = Constants.Routing.RANDOM_USER) {
+        val userHandler: UserHandler by di().instance()
+        userHandler.getRandomUser(this)
+    }
+    post (path = Constants.Routing.CREATE_USER) {
+        val userHandler: UserHandler by di().instance()
+        userHandler.handlePostUser(this)
+    }
 }

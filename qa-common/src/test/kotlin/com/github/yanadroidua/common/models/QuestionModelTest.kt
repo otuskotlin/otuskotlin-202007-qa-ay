@@ -20,13 +20,13 @@ internal class QuestionModelTest {
     @Before
     fun createTestModel() {
         testQuestionModel = QuestionModel(
-                userUuid = userRandomUuid,
-                archived = archived,
-                answers = answers,
-                uuid = randomUuid,
-                rate = rate,
-                views = views,
-                question = question
+            userUuid = userRandomUuid,
+            archived = archived,
+            answers = answers,
+            uuid = randomUuid,
+            rate = rate,
+            views = views,
+            question = question
         )
     }
 
@@ -49,13 +49,14 @@ internal class QuestionModelTest {
     @Test
     fun testIfCommentsHasNoSolvedAndQuestionInNotSolved() {
         val questionModel = testQuestionModel.copy(answers = listOf(
-                AnswerModel(
-                        uuid = UUID.randomUUID().toString(),
-                        answer = "This is dummy, test comment!",
-                        userUuid = UUID.randomUUID().toString(),
-                        solveIssue = false,
-                        rate = 100
-                )
+            AnswerModel(
+                uuid = UUID.randomUUID().toString(),
+                answer = "This is dummy, test comment!",
+                userUuid = UUID.randomUUID().toString(),
+                solveIssue = false,
+                rate = 100,
+                comments = emptyList()
+            )
         ))
         assertEquals(false, questionModel.isAnswered)
     }
@@ -63,13 +64,14 @@ internal class QuestionModelTest {
     @Test
     fun testIfCommentsHasSolvedAndQuestionIsSolved() {
         val questionModel = testQuestionModel.copy(answers = listOf(
-                AnswerModel(
-                        uuid = UUID.randomUUID().toString(),
-                        answer = "This is dummy, test comment!",
-                        userUuid = UUID.randomUUID().toString(),
-                        solveIssue = true,
-                        rate = 100
-                )
+            AnswerModel(
+                uuid = UUID.randomUUID().toString(),
+                answer = "This is dummy, test comment!",
+                userUuid = UUID.randomUUID().toString(),
+                solveIssue = true,
+                rate = 100,
+                comments = emptyList()
+            )
         ))
         assertEquals(true, questionModel.isAnswered)
     }

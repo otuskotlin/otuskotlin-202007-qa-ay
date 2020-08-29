@@ -15,6 +15,7 @@ dependencies {
     val ktorVersion: String by project
     val logbackVersion: String by project
     val serializationVersion: String by project
+    val kodeinKtorVersion: String by project
 
     implementation(kotlin("stdlib-jdk8"))
     implementation(project(":qa-transport-common"))
@@ -24,6 +25,7 @@ dependencies {
     implementation("io.ktor:ktor-serialization:$ktorVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
+    implementation("org.kodein.di:kodein-di-framework-ktor-server-jvm:$kodeinKtorVersion")
 }
 
 tasks {

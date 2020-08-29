@@ -65,8 +65,6 @@ internal class UserHandler(private val json: Json) {
         }
     }
 
-    //TODO: add Kodein for DI
-
     private fun validateCreateUser(createDTO: UserCreateDTO): ValidationResult {
         val nameValidator = NameValidator()
         val ageValidator = AgeValidator()
