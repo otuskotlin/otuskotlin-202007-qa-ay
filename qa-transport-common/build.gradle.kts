@@ -13,8 +13,13 @@ repositories {
 
 dependencies {
     val serializationVersion: String by project
+    val kodeinVersion: String by project
+
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
     implementation(kotlin("stdlib-jdk8"))
+    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test-junit"))
+    implementation("org.kodein.di:kodein-di-conf-jvm:$kodeinVersion")
 }
 
 tasks {

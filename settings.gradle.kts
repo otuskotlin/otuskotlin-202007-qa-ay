@@ -10,4 +10,3 @@ pluginManagement {
 include("qa-common")
 include("qa-transport-common")
 include("qa-transport-rest")
-include("qa-transport-rest")
