@@ -1,11 +1,12 @@
 package com.github.yanadroidua.transport.common.validators
 
+import com.github.yanadroidua.transport.common.validators.impl.NameValidatorImpl
 import org.junit.Assert.*
 import kotlin.test.Test
 
 internal class NameValidatorTest {
 
-    private val nameValidator = NameValidator()
+    private val nameValidator = NameValidatorImpl()
 
     @Test
     fun testValidNames() {

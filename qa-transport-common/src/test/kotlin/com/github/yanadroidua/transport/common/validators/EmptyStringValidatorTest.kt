@@ -1,11 +1,12 @@
 package com.github.yanadroidua.transport.common.validators
 
+import com.github.yanadroidua.transport.common.validators.impl.EmptyStringValidatorImpl
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class EmptyStringValidatorTest {
 
-    private val validator = EmptyStringValidator()
+    private val validator = EmptyStringValidatorImpl()
 
     @Test
     fun `empty string should not pass validation`() {

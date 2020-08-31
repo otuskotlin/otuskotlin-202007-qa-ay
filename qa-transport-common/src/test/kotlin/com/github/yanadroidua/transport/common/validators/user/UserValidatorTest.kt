@@ -3,7 +3,10 @@ package com.github.yanadroidua.transport.common.validators.user
 import com.github.yanadroidua.transport.common.models.user.UserDTO
 import com.github.yanadroidua.transport.common.validators.AgeValidator
 import com.github.yanadroidua.transport.common.validators.NameValidator
+import com.github.yanadroidua.transport.common.validators.UserValidator
 import com.github.yanadroidua.transport.common.validators.UuidValidator
+import com.github.yanadroidua.transport.common.validators.base.ValidationResult
+import com.github.yanadroidua.transport.common.validators.impl.*
 import org.junit.Assert
 import org.junit.Test
 import java.util.*
@@ -19,10 +22,10 @@ internal class UserValidatorTest {
         points = 0
     )
 
-    private val userValidator = UserValidator(
-        nameValidator = NameValidator(),
-        ageValidator = AgeValidator(),
-        uuidValidator = UuidValidator()
+    private val userValidator = UserValidatorImpl(
+        nameValidator = NameValidatorImpl(),
+        ageValidator = AgeValidatorImpl(),
+        uuidValidator = UuidValidatorImpl()
     )
 
     @Test
@@ -75,6 +78,60 @@ internal class UserValidatorTest {
         Assert.assertEquals(false, userValidator.validate(userDTO.copy(uuid = "\t")).valid)
         Assert.assertEquals(false, userValidator.validate(userDTO.copy(uuid = "\b")).valid)
         Assert.assertEquals(false, userValidator.validate(userDTO.copy(uuid = " ")).valid)
+    }
+
+    @Test
+    fun `should fail if name validation fails`() {
+        val errorMessage = "My Mock"
+        val mUserValidatorImpl = UserValidatorImpl(
+            ageValidator = AgeValidatorImpl(),
+            nameValidator = object : NameValidator {
+                override fun validate(model: String): ValidationResult {
+                    return ValidationResult.error(errorMessage)
+                }
+            },
+            uuidValidator = UuidValidatorImpl()
+        )
+
+        val validationResult = mUserValidatorImpl.validate(userDTO)
+        Assert.assertEquals(false, validationResult.valid)
+        Assert.assertEquals(true, validationResult.message.contains(errorMessage))
+    }
+
+    @Test
+    fun `should fail if age validation fails`() {
+        val errorMessage = "My Mock"
+        val mUserValidatorImpl = UserValidatorImpl(
+            nameValidator = NameValidatorImpl(),
+            ageValidator = object : AgeValidator {
+                override fun validate(model: Int): ValidationResult {
+                    return ValidationResult.error(errorMessage)
+                }
+            },
+            uuidValidator = UuidValidatorImpl()
+        )
+
+        val validationResult = mUserValidatorImpl.validate(userDTO)
+        Assert.assertEquals(false, validationResult.valid)
+        Assert.assertEquals(true, validationResult.message.contains(errorMessage))
+    }
+
+    @Test
+    fun `should fail if uuid validation fails`() {
+        val errorMessage = "My Mock"
+        val mUserValidatorImpl = UserValidatorImpl(
+            nameValidator = NameValidatorImpl(),
+            uuidValidator = object : UuidValidator {
+                override fun validate(model: String): ValidationResult {
+                    return ValidationResult.error(errorMessage)
+                }
+            },
+            ageValidator = AgeValidatorImpl()
+        )
+
+        val validationResult = mUserValidatorImpl.validate(userDTO)
+        Assert.assertEquals(false, validationResult.valid)
+        Assert.assertEquals(true, validationResult.message.contains(errorMessage))
     }
 
 }

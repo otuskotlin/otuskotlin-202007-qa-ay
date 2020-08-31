@@ -11,7 +11,7 @@ import org.kodein.di.singleton
 
 internal fun Route.userRouting() {
     subDI {
-        bind<UserHandler>() with singleton { UserHandler(instance()) }
+        bind<UserHandler>() with singleton { UserHandler(instance(), instance(), instance()) }
     }
     get (path = Constants.Routing.RANDOM_USER) {
         val userHandler: UserHandler by di().instance()

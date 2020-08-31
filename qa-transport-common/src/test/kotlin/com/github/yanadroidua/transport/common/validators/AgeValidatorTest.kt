@@ -1,11 +1,12 @@
 package com.github.yanadroidua.transport.common.validators
 
+import com.github.yanadroidua.transport.common.validators.impl.AgeValidatorImpl
 import org.junit.Assert.*
 import kotlin.test.Test
 
 internal class AgeValidatorTest {
 
-    private val ageValidator = AgeValidator()
+    private val ageValidator = AgeValidatorImpl()
 
     @Test
     fun testValidAges() {

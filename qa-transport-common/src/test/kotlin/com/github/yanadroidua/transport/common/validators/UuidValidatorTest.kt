@@ -1,12 +1,13 @@
 package com.github.yanadroidua.transport.common.validators
 
+import com.github.yanadroidua.transport.common.validators.impl.UuidValidatorImpl
 import org.junit.Assert.*
 import java.util.*
 import kotlin.test.Test
 
 internal class UuidValidatorTest {
 
-    private val uuidValidator = UuidValidator()
+    private val uuidValidator = UuidValidatorImpl()
 
     @Test
     fun `must be valid for real uuid`() {

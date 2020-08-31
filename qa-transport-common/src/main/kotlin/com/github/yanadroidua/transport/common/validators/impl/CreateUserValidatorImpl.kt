@@ -1,18 +1,16 @@
-package com.github.yanadroidua.transport.common.validators.user
+package com.github.yanadroidua.transport.common.validators.impl
 
 import com.github.yanadroidua.transport.common.models.user.UserCreateDTO
-import com.github.yanadroidua.transport.common.models.user.UserDTO
 import com.github.yanadroidua.transport.common.validators.AgeValidator
+import com.github.yanadroidua.transport.common.validators.CreateUserValidator
 import com.github.yanadroidua.transport.common.validators.NameValidator
-import com.github.yanadroidua.transport.common.validators.UuidValidator
 import com.github.yanadroidua.transport.common.validators.base.ValidationResult
-import com.github.yanadroidua.transport.common.validators.base.Validator
 import java.lang.StringBuilder
 
-class CreateUserValidator(
-    private val nameValidator: NameValidator,
-    private val ageValidator: AgeValidator
-) : Validator<UserCreateDTO> {
+class CreateUserValidatorImpl(
+        private val nameValidator: NameValidator,
+        private val ageValidator: AgeValidator
+) : CreateUserValidator {
     override fun validate(model: UserCreateDTO): ValidationResult {
         val nameValidationResult = nameValidator.validate(model = model.name)
         val secondNameValidationResult = nameValidator.validate(model = model.secondName)
